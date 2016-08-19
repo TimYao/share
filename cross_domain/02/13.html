@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域之jsonp</title>
+</head>
+<body>
+<!--
+   本页面地址:http://www.test.com/cross_domain/02/13.html   端口80
+   文件访问返回 test.json; 
+-->
+
+<script>
+    
+   //jsonp实现
+   (function($){
+	   $.jsonpfun = jsonpfun;
+	   function jsonpfun(url,opt,fun)
+	   {
+		  var script,callback,success,jsonfunname,callbackstring,state;
+		  if(typeof opt=="function")
+		  {
+			 fun = opt;
+			 opt = null;
+		  }else{
+			 callback = opt.jsonfun; 
+		  }
+		  //callback函数定义
+		  success = fun || opt.fun;  
+		  $.success = success;
+		  
+		  url = url+"?"+"success=success"; // -> success此函数在对于访问后端处理时作为参数约定；
+		  //创建与设置
+		  script = document.createElement("script");
+		  script.setAttribute('src', url);
+		  script.setAttribute('id', "scripts");
+		  script.setAttribute('type', "text/javascript");
+		  
+		  document.getElementsByTagName('head')[0].appendChild(script);
+		  document.getElementById("scripts").onload=document.getElementById("scripts").onreadystatechange = function(){
+			  if(this.readyState)
+			  {
+				 if(this.readyState=="complete" || this.readyState=="loaded")
+				 {
+					 state = true;
+				 }
+			  }else{
+				 state=true;
+			  }
+			  if(state)
+			  {
+				 document.getElementsByTagName('head')[0].removeChild(this);
+				 state = false;
+				 delete $.success;  //删除虚拟函数
+			  }
+		  }
+	   };
+	   
+   })(this || window); 
+	
+	
+   /*ajax测试*/
+   var url = "http://www.ylx.com/cross_domain/02/test.json";   //测试访问文件
+   /*ajax测试 跨域问题
+   createAjax(url,function(reponse){
+       console.log(eval('('+reponse+')'));
+   });
+   */  //test(url,function)
+   /*jsonp实现*/
+
+   jsonpfun(url,function(v){
+       console.log(v);
+   });
+</script>
+   
+   13.html page
+</body>
+</html>

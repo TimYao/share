@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+
+<!--
+   本页面地址:http://www.test.com/cross_domain/03/a/2.html   端口80  
+   
+   访问:http://www.ylx.com/cross_domain/03/b/proxy.php
+-->
+
+
+
+nginx 代理测试
+
+<script src="jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+/*************定义公共方法***********************/	
+   
+   function addxml()
+    {
+        var xml = null;
+        if(window.XMLHttpRequest)
+        {
+            xml = new XMLHttpRequest();
+        }else{
+            xml = new ActiveXObject('Microsoft.XMLDOM');
+        }
+        return xml;
+    };
+    function createAjax(url,callback)
+    {
+        var xml = addxml();
+        if(xml)
+        {
+            xml.open('get',url,true);
+        }
+        xml.onreadystatechange = function()
+        {
+            if(xml.readyState==4 && xml.status == 200)
+            {
+			          callback(JSON.parse(xml.responseText));
+            }
+        };
+        //xml.setRequestHeader("Content-Type","application/x-www-form-urlencoded");  //post设置
+        xml.send(null);
+    };
+   
+   
+/*************测试代码***********************/   
+   
+  createAjax("proxy.php?v=this value",function(reponse){
+       console.log(reponse);
+  });
+  /*$.ajax({
+     url:'proxy.php',
+	 type:'get',
+	 dataType:'json',
+	 data:{
+	   v:"proxyserver"
+     },
+	 success:function(reponse){
+	     console.log(reponse);
+	 },
+	 error:function(){
+	 }
+  }); */ 
+</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>部分同源跨域</title>
+</head>
+<body>
+
+<!--
+   本页面地址:http://www.a.test.com/cross_domain/01/1.html   端口80
+   
+   iframe页面：http://www.b.test.com/cross_domain/01/2.html
+   
+-->
+
+
+<!--
+  测试cookie
+  <a href="http://www.b.test.com:81/cross_domain/01/2.html">click</a>
+
+  <iframe src="http://www.a.test.com/cross_domain/01/2.html" id="iframe01"></iframe>
+-->
+
+
+<!--
+  测试iframe-->
+<iframe src="http://www.b.test.com/cross_domain/01/2.html" id="iframe01"></iframe>
+
+
+
+
+
+<script type="text/javascript">
+   
+   //设置基础域
+   document.domain = "test.com";
+   
+   
+/*************设置本页面cookie localStorage***********************/	   
+   
+   //设置cookie
+   document.cookie = "a=test";
+   
+   //设置父页面localStorage
+   //setLocalStroage();
+   /*function setLocalStroage()
+   {
+  	  var storage,value="test parent storage";
+  	  if(window.localStorage)
+  	  {
+  		  storage = window.localStorage;
+  		  storage.setItem("keyparstorage",value);
+  	  }
+   }*/
+   
+ 
+/*************定义公共方法***********************/	
+ 
+   //定义公共的方法
+   function addEvent(oiframe,fun)
+   {
+       if(window.addEventListener)
+       {
+           oiframe.onload = fun;
+       }else{
+           oiframe.attachEvent('onload',fun);
+       }
+   } 
+   
+/*************测试代码***********************/   
+   
+   /*部分同源下iframe测试*/
+   var iframe01 = document.getElementById("iframe01");
+   addEvent(iframe01,fun);
+   //iframe加载完运行函数
+   function fun(){
+       //访问iframe页面dom节点
+       //console.log(this.contentWindow.document.getElementById('page2').innerHTML);
+	   
+		   //访问iframe页面cookie	
+       //console.log(document.cookie); 		
+	     //console.log(this.contentWindow.document.cookie);
+	   
+	     //访问iframe页面localstorage
+	     //console.log(this.contentWindow.localStorage.getItem("keystorage"));
+   }   
+</script>
+page
+</body>
+</html>

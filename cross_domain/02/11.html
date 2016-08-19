@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+
+<!--
+   本页面地址:http://www.test.com/cross_domain/02/11.html   端口80  
+   
+   http://www.ylx.com/cross_domain/02/12.html
+-->
+
+
+
+
+
+<iframe src="http://www.ylx.com/cross_domain/02/12.html" id="iframe01" name="postiframe"></iframe>
+
+
+<script type="text/javascript">
+/*************定义公共方法***********************/	
+ 
+   //定义公共的方法
+   function addEvent(oiframe,fun)
+   {
+       if(window.addEventListener)
+       {
+           oiframe.onload = fun;
+       }else{
+           oiframe.attachEvent('onload',fun);
+       }
+   }  
+   
+/*************测试代码***********************/   
+   postmessage();
+   function postmessage()
+   {
+       var iframe = document.getElementById("iframe01").contentWindow; 
+       addEvent(document.getElementById("iframe01"),funs);
+	   
+	   
+       function onmessage(event)
+       {   
+	       console.log(event.data);
+	     } 
+       function funs()
+       { 
+  		   iframe.postMessage('this is parent postMessage','http://www.ylx.com/cross_domain/02/12.html');
+  		   
+  		   if (typeof window.addEventListener != 'undefined') {
+  				window.addEventListener('message', onmessage, false);
+  		   } else if (typeof window.attachEvent != 'undefined') {
+  			   //for ie
+  			   window.attachEvent('onmessage', onmessage);
+  		   }
+	     }	   
+   }
+   
+</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+
+<iframe src="http://www.test.com/cross_domain/02/7.html" id="iframe01"></iframe>
+<script>
+	
+	//获取到父页面传入的值
+	var value,iframe01,newvalue="this is new value";
+	window.onhashchange = function(){
+	   value = this.location.href.substring(this.location.href.lastIndexOf("#")+1,this.location.href.length);
+	   value?(iframe01=document.getElementById("iframe01"),iframe01.src=iframe01.src+"#"+newvalue):void(0);
+	}
+   	   
+</script>
+   
+   
+   8.html page
+</body>
+</html>

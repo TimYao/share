@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+
+<iframe src="http://www.test.com/cross_domain/02/3.html" id="iframe02"></iframe>
+
+<script>
+	
+/*************定义公共方法***********************/	
+ 
+   //定义公共的方法
+   function addEvent(oiframe,fun)
+   {
+       if(window.addEventListener)
+       {
+           oiframe.onload = fun;
+       }else{
+           oiframe.attachEvent('onload',fun);
+       }
+   }	
+	   
+
+/*************测试代码***********************/   
+   
+   /*部分同源下iframe测试*/
+   /*本页面域是 www.ylx.com*/
+   var iframe02 = document.getElementById("iframe02");
+   var newvalue = "this is new page";
+   //console.log(window.location);
+   window.location.hash ? (iframe02.src = iframe02.src+"#"+newvalue) : void(0);
+   addEvent(iframe02,fun);
+   //iframe加载完运行函数
+   function fun(){
+          
+   }
+
+	   
+</script>
+   
+   
+   2.html page
+   <!--子页面dom-->
+   <span id="page2">page2</span>
+   
+</body>
+</html>

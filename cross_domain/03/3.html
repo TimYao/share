@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+</head>
+<body>
+
+<!--
+   本页面地址:http://www.test.com/cross_domain/03/3.html   端口80  
+   
+   server.php
+
+   访问:http://www.ylx.com/cross_domain/03/proxy.php
+-->
+
+<script src="jquery.js" type="text/javascript"></script>
+
+
+<script>
+   //getFile();
+   function getFile()
+   {
+   	  $.ajax({
+   	  	 url:'server.php',
+   	  	 type:'get',
+   	  	 async:true,
+   	  	 dataType:'text',
+   	  	 data:{
+   	  	 	mod:2
+   	  	 },
+   	  	 success:function(reponse){
+   	  	 	/*内容*/
+   	  	 	console.log(reponse);
+   	  	 },
+   	  	 error:function(){
+
+   	  	 }
+   	  });
+   }
+
+   //getAjax();
+   function getAjax()
+   {
+       $.ajax({
+	      url:'server.php',
+		  async:true,
+		  type:'get',
+		  dataType:'json',
+		  data:{
+		     v:12,
+		     mod:1
+		  },
+		  success:function(reponse){
+		     var status,msg;
+		     status = reponse.status;
+		     msg = reponse.msg;
+		     if(status)
+		     {
+                 console.log(msg);
+		     }
+		  },
+		  error:function(){
+		  }
+       });
+   }
+   postAjax();
+   function postAjax()
+   {
+	   	$.ajax({
+	      url:'server.php',
+		  async:true,
+		  type:'POST',
+		  //contentType:'application/json', //告诉浏览器接受的数据格式，假如后端返回的数据没有指定content-type格式，将获取不到返回值
+		  //dataType:'json', //通过设置它可以避免后端数据格式没有指定，可以通过JQUERY底层来转换
+		  data:{
+		     v:12,
+		     mod:0
+		  },
+		  success:function(reponse){
+		     var status,msg;
+		     status = reponse.status;
+		     msg = reponse.msg;
+		     if(status)
+		     {
+                 console.log(msg);
+		     }
+		  },
+		  error:function(){
+		  }
+       });
+   }
+</script>
+  page3.html
+</body>
+</html>
+
+</body>
+</html>

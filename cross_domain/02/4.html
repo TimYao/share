@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+
+<!--
+   本页面地址:http://www.test.com/cross_domain/02/4.html   端口80
+   
+   iframe页面：http://www.ylx.com/cross_domain/02/5.html
+   
+-->
+
+
+
+
+
+<iframe src="http://www.ylx.com/cross_domain/02/5.html" id="iframe01"></iframe>
+
+
+
+<p>展示跨域返回过来的值</p>
+<span id="pageshow"></span>
+
+
+
+<script type="text/javascript">
+   
+    
+/*************定义公共方法***********************/	
+ 
+   //定义公共的方法
+   function addEvent(oiframe,fun)
+   {
+       if(window.addEventListener)
+       {
+           oiframe.onload = fun;
+       }else{
+           oiframe.attachEvent('onload',fun);
+       }
+   }
+   
+     
+   
+/*************测试代码***********************/   
+   
+   /*部分同源下iframe测试*/
+   var iframe01 = document.getElementById("iframe01");
+   var value = "this is page one";
+   var status = 0;   
+   iframe01.src = iframe01.src+"#"+value;
+   addEvent(iframe01,fun);
+   //iframe加载完运行函数
+   function fun(){
+       if(status==0)
+		  {
+  			var ref = "http://www.test.com/cross_domain/02/6.html";
+  			iframe01.contentWindow.location.href=ref;
+  			status = 1;
+		  }else{
+			//取得window.name值
+			document.getElementById("pageshow").innerHTML=iframe01.contentWindow.name
+			  iframe01.onload = null;
+		  }
+   }  
+</script>
+
+</body>
+</html>

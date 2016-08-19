@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+   <script>
+       window.location.hash ? (window.parent.parent.document.getElementById("pageshow").innerHTML=window.location.hash.substring(window.location.hash.indexOf("#")+1,window.location.hash.length)):void(0);
+   </script>
+   
+   3.html page
+</body>
+</html>

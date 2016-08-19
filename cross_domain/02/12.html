@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+
+
+<script>
+    postmessage();
+	function postmessage()
+    {
+	    //console.log(parent.location.href);
+	    //parent.postMessage('hello', 'http://www.test.com/cross_domain/02/11.html');
+        if (typeof window.addEventListener != 'undefined') { 
+            window.addEventListener('message', onmessage, false);
+        } else if (typeof window.attachEvent != 'undefined') {
+            //for ie
+            window.attachEvent('onmessage', onmessage);
+        }
+        function onmessage(event)
+        {   
+		    console.log(event);
+            console.log(event.origin);//消息来源地址  通过它来回避到一些不是目的窗口发送的信息接收
+            console.log(event.source);//发送消息窗口对象  运行脚本来源窗口
+            console.log(event.data);//传来的数据
+
+            if(event.origin=="http://www.test.com")
+            {
+                event.source.postMessage('this is callback test',event.origin);
+            }
+        }
+    }
+</script>
+   
+   12.html page
+</body>
+</html>

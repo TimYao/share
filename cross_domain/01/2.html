@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+   <script>
+       //设置基础域
+       document.domain = "test.com";
+
+
+	   
+	   
+/*************设置本页面cookie localStorage***********************/	   
+	   
+	   //设置cookie
+	   //document.cookie = "b=test"; 
+	   
+	   //设置localstorage
+	   //setLocalStroage();
+	   /*function setLocalStroage()
+       {
+          var storage,value="test storage";
+          if(window.localStorage)
+          {
+              storage = window.localStorage;
+              storage.setItem("keystorage",value);
+          }
+       }*/
+	
+	
+	
+	
+/*************访问父页面cookie localStorage***********************/	   
+	   
+       //访问父页面包含的COOKIE
+	   console.log(window.parent.document.cookie); 
+	   
+	   //访问父级页面localStorage
+	   console.log(window.parent.localStorage.getItem("keyparstorage"));
+	   
+	   
+	   
+   </script>
+   
+   
+   2.html page
+   <!--子页面dom-->
+   <span id="page2">page2</span>
+</body>
+</html>

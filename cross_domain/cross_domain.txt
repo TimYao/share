@@ -1,0 +1,184 @@
+跨域：
+
+跨域来源：为了保证个人信息安全浏览器自发存在的安全的保护功能,同源下安全
+
+
+界定跨域要求（同源要求以下相同）
+
+1、协议 
+
+2、域名 
+
+3、端口
+
+
+
+协议：
+   
+  应用层：
+ 
+       telnet远程登录协议
+       FTP文件传输协议
+       SMTP/POP3邮件传输协议
+       HTTP超文本传输协议、HTTPS加密协议
+       SNMP简约网络管理协议
+       DHCP 动态主机配置协议
+       SSH安全外壳协议    
+   
+  运输层
+ 
+      TCP传输控制协议
+      UDP用户数据报协议
+      SSL安全套阶层协议
+   
+  网络层协议
+       
+      IP
+      ARP地址解析协议
+      RARP逆向地址解析协议
+      IPSEC
+      网络层路由协议  RIP路由信息协议
+                      OSPF开放式最短路径优先协议
+      网络层管理协议  ICMP控制消息协议
+                      IGMP互联网管理协议
+ 
+  数据链路层协议  
+  
+      ATM异步传输协议
+      PPP点对点协议  
+      PPTP点对隧道协议
+      L2TP第二层隧道协议
+
+
+域名：为了方便大家记录网络地址诞生
+
+  域名分为顶级域名，二级域名等等 
+
+  国际顶级域名有.com商业机构 .net网络组织 .org各种组织包括非盈利的组织    
+  
+  国家代码顶级域名 .cn .us .de .jp 等
+
+
+
+由于对域同源与否产生了
+ 
+
+部分同源跨域和完全不同源跨域
+
+  部分同源跨域  01文件
+
+  1、前端实现
+   
+     在基础域名相同下
+
+     例如： www.a.test.com
+           www.b.test.com
+ 
+     需要设置两个页面下document.domain为基础域名 test.com
+  
+     这里对cookie比较特别 cookie可以访问，要求域名是相同，以及路径关系，对端口不感冒
+       
+  2、后端实现
+
+     通过后端设置setcookie
+
+
+  完全不同源跨域 02文件
+  
+  1、前端实现
+
+     可以实现传值，取值
+     
+     iframe+hash+代理文件（文件1,2,3）
+
+     iframe实现可以多窗口，hash传递值，代理文件实现变跨域为同域访问 ，利用了iframe的window.parent.parent特性
+     同样可以获取locastorage,cookie，dom节点进行传递
+
+     window.name实现，利用了在同域下，短时间的窗口切换不会改变值得变化（文件4,5,6）
+
+     window.onhashchange(文件7,8)   
+  
+
+ 2、前后端协作
+
+     window.name+post+iframe(文件9,10,test.php)
+     实现post提交传值，返回后端值   
+    
+     window.postMessage(文件11,12)
+
+     jsonp利用了标签特性，script，img,link，可以直接加载，不会受同源策略影响,利用callback返回值，get模式（文件13,test.js）
+<script type=“text/javascript” src=“http://www.test.com?callbackfun=test”></script>
+    
+
+
+ 3、后端实现 03文件
+    
+     设置header头允许一些指定的域访问可以访问(文件1，test.php)
+     
+         header("Access-Control-Allow-Origin:http://www.test.com");运行指定的地址访问
+
+
+     后端语言代理实现  (文件3,proxys.php,proxys.txt,server.php)
+         后端语言来虚拟发送请求，利用了curl开启模拟浏览模式发送请求
+
+
+
+     服务器代理实现（nginx） （文件夹a,b） 
+          
+         需要配置nginx
+
+         设置代理实现路由跳转  
+
+    
+
+
+
+
+     
+     
+
+     
+
+  
+    
+     
+
+  
+
+
+nginx 用正则实现路由 ***
+
+php-fpm
+
+curl BOM
+
+基础域名，主域
+
+
+JSON.parse
+
+contentType
+
+accept 
+
+以上两者区别
+
+浏览器设置request
+后端设置response
+
+PHP proxy curl
+ 设置头信息和不设置头信息区别
+ isset empty 区别
+  
+
+     
+     
+
+    
+     
+ 
+     
+
+
+  
+       

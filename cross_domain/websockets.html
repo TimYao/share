@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<!--test7  websocket-->
+<p>websocket跨域</p>
+<div id="sse">
+    <a href="javascript:getWebSocket('ws://www.ylx.com:8100/test/cross_domain/socket.php','')">Run WebSocket</a>
+</div>
+<script>
+    //websocket   has question
+    function getWebSocket(url,message)
+    {
+        if(!WebSocket in window)
+        {
+            console.log("不支持websocket");
+            return false;
+        }
+        var websocketobj =  new WebSocket(url);
+        websocketobj.onopen = function(event){
+            websocketobj.send(message);
+        };
+        websocketobj.onmessage = function(event){
+            //console.log(event.data);
+        };
+        websocketobj.onerror = function()
+        {
+            console.log("error");
+        };
+        websocketobj.onclose = function()
+        {
+            console.log("origin:"+url+" is closed!");
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+
+<!--
+   本页面地址:http://www.test.com/cross_domain/02/9.html   端口80  
+   http://www.test.com/cross_domain/02/10.html
+-->
+
+
+
+
+
+<iframe src="" id="iframe01" name="myiframe"></iframe>
+<form action="http://www.ylx.com/cross_domain/02/test.php" method="post" name="myform" id="myform" target="myiframe">
+   <input type="hidden" value="this is test value" name="text"/>
+   <input type="hidden" value="0" name="flg"/>
+   <input type="hidden" value="callbakfun" name="fun"/>
+   <input type="submit" value="submit"/>
+</form>
+
+
+
+
+<script type="text/javascript">
+   
+    
+/*************定义公共方法***********************/	
+ 
+   //定义公共的方法
+   function addEvent(oiframe,fun)
+   {
+       if(window.addEventListener)
+       {
+           oiframe.onload = fun;
+       }else{
+           oiframe.attachEvent('onload',fun);
+       }
+   }
+   
+     
+   
+/*************测试代码***********************/   
+   
+   /*测试   window.name特性返回值   */
+   //test1();
+   function test1()
+   {
+       var iframe01 = document.getElementById("iframe01");
+  	   var myform = document.getElementById("myform");
+  	   var status = 0; 
+  	   myform.submit();    
+  	   addEvent(iframe01,funs);
+
+  	   function funs()
+  	   {
+    		  if(status==0)
+    		  {
+    			 status = 1;
+    			 iframe01.contentWindow.location.href="http://www.test.com/cross_domain/02/10.html";
+    		  }else{
+    			 iframe01.onload = null;
+    			 console.log(iframe01.contentWindow.name);		 
+    		  }
+  	   }
+   }
+   
+   
+   /*测试   iframe返回值特性  */
+   //test2();
+   function test2()
+   {
+       var iframe01 = document.getElementById("iframe01");
+	     var myform = document.getElementById("myform");
+	     var status = 0;
+	     myform.submit();
+   }
+   
+   /*测试   callback返回值特性 问题待解决 */
+   //test3();
+   function test3()
+   {
+       var iframe02;
+	     var myform = document.getElementById("myform");
+	     var status = 0;
+	     
+       myform.onsubmit = function(){
+          this.action = "";
+          iframe02 = "<iframe src='http://www.test.com/cross_domain/02/10.html' id='iframe02' name='iframe02' style='display:none;'></iframe>";
+          this.target = "iframe02";
+          this.innerHTML+=iframe02
+          //this.action = "http://www.ylx.com/cross_domain/02/test.php";
+       }  
+   }
+   //定义函数
+   function callbackfun(v){
+       console.log("this value is : "+v);
+   } 
+   
+</script>
+
+</body>
+</html>

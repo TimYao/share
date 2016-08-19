@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+
+
+<script>
+   /* 
+     调用父窗口的函数  test2函数 测试
+     var v = window.location.hash.substring(window.location.hash.indexOf("#")+1,window.location.hash.length);
+     top.callbackfun(v);
+   */
+   
+   console.log(window.top.window.callbackfun);
+   
+</script>
+   
+   10.html page
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完全不同源跨域</title>
+</head>
+<body>
+
+<!--
+   本页面地址:http://www.test.com/cross_domain/02/7.html   端口80
+   
+   iframe页面：http://www.ylx.com/cross_domain/02/8.html
+   
+-->
+
+
+
+
+
+<iframe src="http://www.ylx.com/cross_domain/02/8.html" id="iframe01"></iframe>
+
+
+
+<script type="text/javascript">
+   
+    
+/*************定义公共方法***********************/	
+ 
+   //定义公共的方法
+   function addEvent(oiframe,fun)
+   {
+       if(window.addEventListener)
+       {
+           oiframe.onload = fun;
+       }else{
+           oiframe.attachEvent('onload',fun);
+       }
+   }
+   
+     
+   
+/*************测试代码***********************/   
+   
+   /*测试*/
+   var iframe01 = document.getElementById("iframe01");
+   var value = "this is page one";
+   var status = 0;   
+   setTimeout(function(){
+     iframe01.src = iframe01.src+"#"+value;
+   },500);
+   
+   //子页面返回值获取 
+   var subvalue;	
+   window.onhashchange = function(){
+      subvalue = window.location.href.substring(window.location.href.lastIndexOf("#")+1,window.location.href.length);
+	  console.log(subvalue);
+   }	
+</script>
+
+</body>
+</html>
