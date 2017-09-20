@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>pushstate</title>
+</head>
+<body>
+
+<ul id="list">
+  <li><a href="#1">test1</a></li>
+  <li><a href="#2">test2</a></li>
+</ul>
+<div id="odiv"></div>
+
+<script type="text/javascript">
+    var flg,lista = document.getElementById("list"),surl,odiv = document.getElementById("odiv"),ev,target,rxml,url="test.php";
+    lista.onclick = function(event){
+        ev = window.event || event;
+        target = ev.target || ev.srcElement;
+        (target.tagName).toLowerCase() === "a" ? (fun(target)) : void(0);
+        ev.returnValue ? ev.returnValue = false :  ev.preventDefault();
+    }
+    function fun(obj){
+        var i=0,_url,ob,data,alls = lista.getElementsByTagName("a");
+        if(_url = location.search.split("=")[1]){
+            for(i;i<alls.length;i++){
+                if(_url===alls[i].href.split("#")[1]){
+                    ob = alls[i];
+                    flg=undefined;
+                    break;
+                }
+            }
+        }else{
+            ob = alls[0];
+            flg = true;
+        }
+
+        ob = obj ? obj : ob;
+        data = ob.href.split("#")[1];
+        surl = '?a='+data;
+        url = url.split("?")[0]+"?a="+data;
+        xml(url);
+    };
+    function xml(url){
+        if(window.ActiveXObject){
+            rxml = new ActiveXObject("Microsoft.XMLHTTP");
+        }else{
+            rxml = new XMLHttpRequest();
+        }
+
+        rxml.open('get',url,true);
+
+        //设置指定返回数据格式
+        //rxml.overrideMimeType("text/plain; charset=x-user-defined");
+        rxml.responseType = "json";
+        rxml.onreadystatechange = function(){
+           if(this.readyState===4 && this.status===200){console.log(rxml);
+               odiv.innerHTML = rxml.response.msg;
+           }
+        }
+        rxml.send(null);
+        pushs();
+    };
+    function pushs(){
+        if(window.history.pushState){
+            flg ? (window.history.replaceState(null,"title",surl),console.log(1)) : (window.history.pushState({"title":"ceshi"},"title",surl),console.log(2));
+        }
+    };
+    fun();
+    //监测
+    window.addEventListener("popstate",function(){
+        var currentState = history.state;
+        fun();
+    })
+</script>
+</body>
+</html>
