@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>部分同源跨域</title>
+</head>
+<body>
+<script>
+    /*
+    *  底层模式学习梳理
+    */
+
+    //实现深度遍历
+    function extend(a,b){
+        var k;
+        if(typeof a !== "object" || typeof b !=="object") return false;
+        for(var m in b){
+            if(typeof b[m]==="object"){
+                k = b[m] instanceof Array ? [] : {};
+                a[m] = extend(k,m);
+            }else{
+                a[m] = b[m];
+            }
+        }
+        return a;
+    }
+
+    var a = {a:1};
+    var b = {b:2,c:{c:1}};
+    function ex(a,b){
+        var k={},params;
+        params = [].slice.call(arguments);
+        params.forEach(function(obj){
+            if(typeof obj !== "object"){
+                return false;
+            }
+            getpros(obj);
+        });
+        //也可以通过这个Object.getOwnPropertyDescriptors避免循环获得
+        function getpros(obj){
+            var i=0,l,pros;
+            pros = Object.getOwnPropertyNames(obj);
+            l = pros.length;
+            for(i;i<l;i++){
+                k[pros[i]] = Object.getOwnPropertyDescriptor(obj,pros[i]);
+            }
+        }
+        return Object.create({},k);
+    }
+
+    //parseInt
+    function coustom(a){
+        var b=/^\s*([1-9]*)\w*/,
+            c;
+        return (c = a.match(b)) ? (c[1]?c[1]:"NaN") : "NaN";
+    }
+    
+</script>
+</body>
+</html>
