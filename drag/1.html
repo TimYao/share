@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>拖拽</title>
+</head>
+<body>
+<style>
+  * {margin:0;padding: 0; }
+  html{height:auto;}
+  .uls{display:table;position:relative;}
+  .uls li{background-color:#00A1EB;color:#000;display:inline-block;width:100px;height:100px;vertical-align:middle;text-align:center;margin:20px;}
+</style>
+
+<ul class="uls" id="uls">
+  <li draggable="true"><span>1</span></li>
+  <li draggable="true">2</li>
+  <li draggable="true">3</li>
+  <li draggable="true">4</li>
+</ul>
+<script type="text/javascript">
+    function drags(){
+        var i=0,l,lis,_this,ul;
+        ul = document.getElementById("uls");
+        lis = ul.getElementsByTagName("li");
+        l = lis.length;
+        for(i;i<l;i++){
+            lis[i].ondragstart = function(event){
+                _this = this;
+                event.dataTransfer.setData("text",i);
+            }
+            lis[i].ondragover = function(event){
+                event.preventDefault();
+            }
+            lis[i].ondrop = function(event){
+                var tag;
+                tag = event.target;
+                event.preventDefault();
+                if(tag.tagName.toLowerCase()==="li" && tag !=_this){
+                    ul.insertBefore(_this,tag.previousElementSibling ? tag.previousElementSibling.nextElementSibling : ul.firstElementChild);
+                }
+            }
+        }
+        ul.ondragover = function(event){
+            event.preventDefault();
+        }
+        ul.ondragenter = function(event){
+            event.preventDefault();
+        }
+        ul.ondrop = function(event){
+            var index,tag;
+            event.preventDefault();
+            if(event.target.tagName.toLowerCase()==="ul"){
+                if((index = Number(Math.round(event.offsetX/140)))>=0){
+                  tag = lis[index];
+                }
+                if(tag&&tag===_this){
+                    return false;
+                }
+                event.target.insertBefore(_this,tag.previousElementSibling ? tag.previousElementSibling.nextElementSibling : event.target.firstElementChild);
+            }
+        }
+    }
+    drags();
+</script>
+</body>
+</html>
