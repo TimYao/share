@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+</head>
+<style>
+    *{padding:0;margin:0;}
+    .odiv{width:100px;height:100px;background-color:#00A1EB;position:absolute;left:0;}
+</style>
+<body>
+  <div class="odiv" id="odiv"></div>
+  <script type="text/javascript">
+     window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame   ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          window.oRequestAnimationFrame      ||
+          window.msRequestAnimationFrame     ||
+          function( callback ){
+              window.setTimeout(callback, 1000 / 60);
+          };
+     })();
+     window.cancelAnimationFrame = (function(){
+         return window.cancelAnimationFrame   ||
+                window.webkitCancelAnimationFrame ||
+                window.mozCancelAnimationFrame ||
+                window.oCancelAnimationFrame   ||
+                window.msCancelAnimationFrame
+     })();
+     var odiv,n=0;
+     odiv = document.getElementById("odiv");
+     var k = window.requestAnimationFrame(function(t){
+         n+=10;
+         odiv.style.left = n+'px';
+         if(n<500){
+             window.requestAnimationFrame(arguments.callee);
+         }else{
+             window.cancelAnimationFrame(k)
+         }
+     });
+  </script>
+</body>
+</html>
