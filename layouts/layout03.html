@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>layout 布局3</title>
+  <style>
+    html,body,div{padding:0;margin:0;}
+    html,body{height:100%;+height:100%;overflow:hidden}
+    .header{
+       background-color:#3a87ad;
+       color:#fff;
+       text-align:center;
+       line-height:80px;
+       height:80px;
+    }
+    .content{
+       background-color: #5bc0de;
+       height:100%;
+    }
+    .ptable{
+       display:table;
+       width:100%;
+    }
+    .p{
+       display:table-row;
+       background-color:#000;
+    }
+    .left{
+       background-color:#2a6496;
+       display:table-cell;
+       word-wrap:break-word;
+    }
+    .ld{
+       width:200px;
+    }
+    .right{
+       background-color:#4cae4c;
+       display:table-cell;
+       word-wrap: break-word;
+    }
+    .clearfix{
+       clear:both;
+    }
+    .clearfix:after{
+       content:'';
+       display:block;
+       visibility:hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+     header
+  </div>
+  <div class="content clearfix">
+     <div class="ptable">
+        <div class="p">
+           <div class="left">
+              <div class="ld">
+                 22222222
+                 222222221222222222222222212
+                 2222222222222221
+                 22222222
+                 222222221222222222222222212
+                 2222222222222221
+              </div>
+           </div>
+           <div class="right">
+              2222222222222222222222222222222
+              2222222222222222222222222222222
+      
+           </div>
+        </div>
+     </div>
+  </div>
+</body>
+</html>

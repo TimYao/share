@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>layout 布局2</title>
+  <style>
+    html,body,div{padding:0;margin:0;}
+    html,body{height:100%;+height:100%;overflow:hidden}
+    .header{
+       background-color:#3a87ad;
+       color:#fff;
+       text-align:center;
+       line-height:80px;
+       height:80px;
+    }
+    .content{
+       background-color: #5bc0de;
+       height:100%;
+       overflow:hidden;
+       margin-bottom:-80px;
+    }
+    .left{
+       background-color:#2a6496;
+       float:left;
+       width:200px;
+       height:77%;
+    }
+    .right{
+       background-color:#4cae4c;
+       height:77%;
+    }
+    .footer{
+       background-color: #ccc;
+       height:80px;
+       position:relative;
+    }
+    .clearfix{
+       clear:both;
+    }
+    .clearfix:after{
+       content:'';
+       display:block;
+       visibility:hidden;
+    }
+    .subcontent{
+       height:100%;
+       overflow-y: scroll;
+       word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+     header
+  </div>
+  <div class="content clearfix">
+     <div class="left">left</div>
+     <div class="right">
+        <div class="subcontent">
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontentsubcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+           subcontentsubcontentsubcontentsubcontentsu
+           bcontentsubcontentsubcontentsubcontentsubconte
+           ntsubcontentsubcontentsubcontentsubcontent
+        </div>
+     </div>
+     <div class="footer">
+        footer
+     </div>
+  </div>
+</body>
+</html>
