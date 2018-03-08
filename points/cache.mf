@@ -1,0 +1,18 @@
+CACHE MANIFEST
+
+# version v2
+
+# 注释：需要缓存的文件，无论在线与否，均从缓存里读取
+
+CACHE:
+./images/photo1.jpg
+
+
+# 注释：不缓存的文件，无论缓存中存在与否，均从新获取
+
+NETWORK:
+*
+manifest.html
+
+# 注释：获取不到资源的备选文件
+FALLBACK:

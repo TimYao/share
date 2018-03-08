@@ -72,6 +72,91 @@
            </div>
         </div>
      </div>
+  
+    <style>
+      .a{
+        display:flex;
+        flex-direction:row;
+        flex-wrap: nowrap;
+        justify-content:space-between;
+        align-items:center;
+        height:300px;
+        background-color: red;
+        /*padding:0 10%;*/
+        padding-right:15px;
+      }
+      .a .item{
+        border:1px solid #000;
+        /*flex-basis:20%;*/
+        /*width:20%;*/
+        word-wrap: break-word;
+        flex:1;/*flex-grow flex-shirk flex-basis   order align-self*/
+        margin-left:15px;
+      }
+      .b{
+        display: table;
+        width:100%;
+      }
+      .item-table{
+        display: table-row;
+      }
+      .b .item{
+        display:table-cell;
+        width:33.3%;
+      }
+      .b .item1 .item01{
+        margin-left:5%;
+      }
+      .b .item01{
+        margin:0 5% 0 0;
+        border:1px solid #000;
+      }
+      
+      .box-border{
+        border: none;
+        box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.5);
+
+      margin-top:20px;
+      }
+    </style>
+    <div class="a">
+      <div class="item item1">1111111111111111111111111111111111111111111111111111111</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+    </div>
+    <div class="b">
+      <div class="item-table">
+        <div class="item item1">
+          <div class="item01">1</div>
+        </div>
+        <div class="item item2">
+          <div class="item01">2</div>
+        </div>
+        <div class="item item3">
+          <div class="item01">3</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="border:1px solid #000;margin-top:10px;height:20px;">
+      <div style="border:1px solid red;position:relative;left:50%;float:left;height:20px;">
+        <span style="border:1px solid #000;display:block;position:relative;left:-50%;">position:relative</span>
+      </div>
+    </div>
+  
+    <div style="border:1px solid #000;margin-top:10px;height:20px;">
+      <div style="border:1px solid red;position:relative;left:50%;height:20px;float:left;">
+        <span style="border:1px solid #000;display:block;transform: translate(-50%,0)">
+          transform: translate
+        </span>
+      </div>
+    </div>
+    
+    
+    <div class="box-border"></div>
+    
+    
   </div>
+
 </body>
 </html>
