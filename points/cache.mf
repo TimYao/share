@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# version v2
+# version v1
 
 # 注释：需要缓存的文件，无论在线与否，均从缓存里读取
 

@@ -6,53 +6,52 @@
 </head>
 <body>
   
-  /*
-     对离线存储的学习理解
   
-     为什么要做离线存储：
-     1、提高的本地访问速度
-     2、减少http请求延迟问题
-     3、减少的服务器的负载多问题
+     对离线存储的学习理解<br/>
+     <br/>
+     为什么要做离线存储：<br/>
+     1、提高的本地访问速度<br/>
+     2、减少http请求延迟问题<br/>
+     3、减少的服务器的负载多问题<br/>
+     <br/><br/>
+     
+     运用方式：<br/>
+     1、配置服务器支持访问manifest文件格式<br/>
+        text/cache-manifest   文件格式可以自定义<br/>
+     2、在需要的页面加入manifest文件标识<br/>
+     3、配置manifest文件<br/>
+     4、在每次修改文件后对应更新manifest文件（后端）<br/>
+     5、前端做监测实施更新<br/>
+     
   
+     事件执行顺序<br/>
+     load<br/>
+     checking 2<br/>
+     downloading  3<br/>
+     progressing<br/>
+     cached<br/>
+     updateready 4<br/>
+     OBSOLETE 5 已开启离线应用，但缓存资源都已标记为废弃<br/>
+     error  监测失败<br/>
+
+     cache.status 监测以上数字变化<br/>
      
-     运用方式：
-     1、配置服务器支持访问manifest文件格式
-        text/cache-manifest   文件格式可以自定义
-     2、在需要的页面加入manifest文件标识
-     3、配置manifest文件
-     4、在每次修改文件后对应更新manifest文件（后端）
-     5、前端做监测实施更新
-     
+     window.applicationCache.swapCache 做新缓存更新，页面本在下一次展示，我们通过监测来动态更新<br/>
   
-     事件执行顺序
-     load
-     checking 2
-     downloading  3
-     progressing
-     cached
-     updateready 4
-     OBSOLETE 5 已开启离线应用，但缓存资源都已标记为废弃
-     error  监测失败
+     注意：<br/>
+      1、添加了manifes页面默认缓存<br/>
+      2、在配置manifest文件，顶部必须<br/>
+         CACHE MANIFEST<br/>
+      3、在请求中由于search后添加参数被视为新页面，所以会影响缓存失败，通过hash方式解决<br/>
+      4、在访问中如果其中一个资源更新失败，将按本地缓存方式更新，本次离线缓存失败 error可监测.<br/>
 
-     cache.status 监测以上数字变化
      
-     window.applicationCache.swapCache 做新缓存更新，页面本在下一次展示，我们通过监测来动态更新
-  
-     注意：
-      1、添加了manifes页面默认缓存
-      2、在配置manifest文件，顶部必须
-         CACHE MANIFEST
-      3、在请求中由于search后添加参数被视为新页面，所以会影响缓存失败，通过hash方式解决
-      4、在访问中如果其中一个资源更新失败，将按本地缓存方式更新，本次离线缓存失败 error可监测
-     
-  */
+     <br/><br/><br/>
 
-
-
-  读取缓存图
-  <img src="images/photo.jpg" alt=""/>
-  <br/>
-  读取非缓存图
+  读取缓存图<br/>
+  <img src="images/photo1.jpg" alt=""/>
+  <br/><br/>
+  读取非缓存图<br/>
   <img src="images/thumb6.jpg" alt=""/>
 
   <script type="text/javascript">
