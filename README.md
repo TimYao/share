@@ -17,3 +17,17 @@ Share my knowledge awareness
 ##文件drag
 
 实现拖拽模块功能
+
+##文件layout
+
+布局功能学习
+
+##文件points
+
+知识点学习
+
+##文件datasite
+
+d3学习
+
+![d3-force](./share/datasite/images/pic.jpg)
