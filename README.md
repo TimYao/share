@@ -30,4 +30,4 @@ Share my knowledge awareness
 
 d3学习
 
-![d3-force](/user/desktop/doge.png)
+![d3-force](./share/datasite/images/pic.jpg)
