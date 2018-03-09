@@ -30,4 +30,10 @@ Share my knowledge awareness
 
 d3学习
 
-![d3-force](./share/datasite/images/pic.jpg)
+![Alt text](share/datasite/d3/images/pic1.jpg)
+
+![Alt text](share/datasite/d3/images/pic2.jpg)
+
+![Alt text](share/datasite/d3/images/pic3.jpg)
+
+![Alt text](share/datasite/d3/images/pic4.jpg)
